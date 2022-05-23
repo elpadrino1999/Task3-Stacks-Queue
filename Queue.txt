@@ -1,0 +1,63 @@
+public class customQueue<G> {
+
+    private Node<G>front;
+    private Node<G>rear;
+    private int length;
+    
+
+
+
+    public static class Node<G>{
+        private final G data;
+
+        private Node<G>next;
+
+        public Node(G data) {
+            this.data = data;
+
+
+        }
+    }
+
+    public void enQueue(G data){
+        if(front==null){
+            rear=new Node<>(data);
+            front=rear;
+        }else{
+            rear.next=new Node<>(data);
+            rear=rear.next;
+        }
+        length++;
+    }
+
+    public G deQeue(){
+        if (front != null) {
+            G result= front.data;
+            front=front.next;
+            length--;
+            return result;
+        }
+        return null;
+    }
+
+    public int size(){
+        return length;
+    }
+
+    public G peek(){
+
+        if (front == null){
+            System.out.println("Queue is Empty");
+        }
+        return front.data;
+    }
+
+  public void display(){
+        Node <G> currentNode=front;
+        while (currentNode!=null){
+            System.out.print(currentNode.data+" ");
+            currentNode=currentNode.next;
+        }
+  }
+
+}

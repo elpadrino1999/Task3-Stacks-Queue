@@ -1,0 +1,58 @@
+public class Stack<G>{
+    private Node  top;
+    private int size;
+    public class Node{
+        private G data;
+        private Node next;
+
+        public int size() {return size;}
+
+        public boolean isEmpty(){
+            return size==0;
+        }
+
+        public Node(G data) {
+            this.data = data;
+        }
+    }
+
+    public G pop(){
+        if(top.isEmpty()){
+            throw new EmptyStackException();
+
+        }
+        G result = top.data;
+        top=top.next;
+        size--;
+        return result;
+    }
+
+    public G peek(){
+
+        if (top.isEmpty()){
+            throw new EmptyStackException();
+        }
+        return top.data;
+    }
+
+    public void push(G data){
+        Node n =new Node(data);
+        n.next=top;
+        top=n;
+        size++;
+        System.out.println(n);
+    }
+
+    public void display(){
+        Node current = top;
+        while (current!=null){
+            System.out.print(current.data+" ");
+            current=current.next;
+        }
+    }
+
+    public int size(){
+        return size;
+    }
+
+}
